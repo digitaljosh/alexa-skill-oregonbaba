@@ -1,7 +1,22 @@
-welcome: Welcome to memory game. I'm going to say three numbers for you to repeat backwards. Ready?
+welcome: Welcome to Baba G's D.I.Y. candy recipe. I can tell you about steps one through twelve. Which step would you like to hear?
 
-round: Can you repeat the numbers {{ numbers|join(", ") }} backwards?
+one: This is step one. Which step would you like next?
+two: This is step two. Which step would you like next?
+three: This is step three. Which step would you like next?
+four: This is step four. Which step would you like next?
+five: This is step five. Which step would you like next?
+six: This is step six. Which step would you like next?
+seven: This is step seven. Which step would you like next?
+eight: This is step eight. Which step would you like next?
+nine: This is step nine. Which step would you like next?
+ten: This is step ten. Which step would you like next?
+eleven: This is step eleven. Which step would you like next?
+twelve: This is step twelve. Which step would you like next?
 
-win: Good job!
+unknown: Sorry, I do not recognize that step. Please say a step number between one and twelve
 
-lose: Sorry, that's the wrong answer.
+# round: Can you repeat the numbers {{ numbers|join(", ") }} backwards?
+
+# win: Good job!
+
+# lose: Sorry, that's the wrong answer.

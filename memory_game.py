@@ -1,7 +1,5 @@
 import logging
 
-from random import randint
-
 from flask import Flask, render_template
 
 from flask_ask import Ask, statement, question, session
@@ -23,34 +21,50 @@ def new_game():
     return question(welcome_msg)
 
 
-@ask.intent("YesIntent")
+@ask.intent("AnswerIntent", convert={'stepNumber': int})
 
-def next_round():
+def answer(stepNumber):
 
-    numbers = [randint(0, 9) for _ in range(3)]
+    if stepNumber == 1:
+        msg = render_template('one')
 
-    round_msg = render_template('round', numbers=numbers)
+    elif stepNumber == 2:
+        msg = render_template('two')
 
-    session.attributes['numbers'] = numbers[::-1]  # reverse
+    elif stepNumber == 3:
+        msg = render_template('three')
+    
+    elif stepNumber == 4:
+        msg = render_template('four')
 
-    return question(round_msg)
+    elif stepNumber == 5:
+        msg = render_template('five')
 
+    elif stepNumber == 6:
+        msg = render_template('six')
 
-@ask.intent("AnswerIntent", convert={'first': int, 'second': int, 'third': int})
+    elif stepNumber == 7:
+        msg = render_template('seven')
 
-def answer(first, second, third):
+    elif stepNumber == 8:
+        msg = render_template('eight')
 
-    winning_numbers = session.attributes['numbers']
+    elif stepNumber == 9:
+        msg = render_template('nine')
 
-    if [first, second, third] == winning_numbers:
+    elif stepNumber == 10:
+        msg = render_template('ten')
 
-        msg = render_template('win')
+    elif stepNumber == 11:
+        msg = render_template('eleven')
+
+    elif stepNumber == 12:
+        msg = render_template('twelve')
 
     else:
+        msg = render_template('unknown')
 
-        msg = render_template('lose')
-
-    return statement(msg)
+    return question(msg)
 
 
 if __name__ == '__main__':
