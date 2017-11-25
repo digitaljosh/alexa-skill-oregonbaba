@@ -1,0 +1,13 @@
+{
+    "intents": [
+      {
+        "intent": "AnswerIntent",
+        "slots": [
+          {
+            "name": "stepNumber",
+            "type": "AMAZON.NUMBER"
+          }
+        ]
+      }
+    ]
+  }
