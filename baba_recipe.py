@@ -21,6 +21,8 @@ def new_game():
     return question(welcome_msg)
 
 
+#TODO update sample utterances, as of now it only recognizes "one", "two", etc
+
 @ask.intent("AnswerIntent", convert={'stepNumber': int})
 
 def answer(stepNumber):
