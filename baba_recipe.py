@@ -5,6 +5,7 @@ from flask import Flask, render_template
 from flask_ask import Ask, statement, question, session
 
 
+
 app = Flask(__name__)
 
 ask = Ask(app, "/")
@@ -14,19 +15,20 @@ logging.getLogger("flask_ask").setLevel(logging.DEBUG)
 
 @ask.launch
 
-def new_game():
+def new_recipe():
 
     welcome_msg = render_template('welcome')
 
     return question(welcome_msg)
 
 
-#TODO update sample utterances, as of now it only recognizes "one", "two", etc
+
 
 @ask.intent("AnswerIntent", convert={'stepNumber': int})
 
 def answer(stepNumber):
 
+    
     if stepNumber == 1:
         msg = render_template('one')
 
@@ -67,6 +69,17 @@ def answer(stepNumber):
         msg = render_template('unknown')
 
     return question(msg)
+
+
+@ask.intent('AMAZON.StopIntent')
+def stop():
+    return statement("Goodbye")
+
+
+@ask.intent('AMAZON.CancelIntent')
+def cancel():
+    return statement("Goodbye")
+
 
 
 if __name__ == '__main__':
