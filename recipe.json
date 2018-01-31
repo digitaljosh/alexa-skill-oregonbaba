@@ -1,22 +1,52 @@
 {
-    "intents": [
-      {
-        "intent": "AnswerIntent",
-        "slots": [
-          {
-            "name": "stepNumber",
-            "type": "AMAZON.NUMBER"
-          }
-        ]
-      },
-      {
-        "intent": "AMAZON.HelpIntent"
-      },
-      {
-        "intent": "AMAZON.StopIntent"
-      },
-      {
-        "intent": "AMAZON.CancelIntent"
-      }
-    ]
-  }
+  "intents": [
+    {
+      "intent": "AMAZON.NavigateSettingsIntent"
+    },
+    {
+      "intent": "AMAZON.MoreIntent"
+    },
+    {
+      "intent": "AMAZON.PageDownIntent"
+    },
+    {
+      "intent": "AMAZON.PageUpIntent"
+    },
+    {
+      "intent": "AMAZON.ScrollRightIntent"
+    },
+    {
+      "intent": "AMAZON.ScrollDownIntent"
+    },
+    {
+      "intent": "AMAZON.ScrollLeftIntent"
+    },
+    {
+      "intent": "AMAZON.ScrollUpIntent"
+    },
+    {
+      "intent": "AMAZON.NextIntent"
+    },
+    {
+      "intent": "AMAZON.PreviousIntent"
+    },
+    {
+      "intent": "AnswerIntent",
+      "slots": [
+        {
+          "name": "stepNumber",
+          "type": "AMAZON.NUMBER"
+        }
+      ]
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    }
+  ]
+}
