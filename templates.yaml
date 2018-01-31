@@ -26,8 +26,3 @@ twelve: Step twelve. Enjoy by yourself or with friends! Which step would you lik
 
 unknown: Sorry, I do not recognize that step. Please say a step number between one and twelve
 
-# round: Can you repeat the numbers {{ numbers|join(", ") }} backwards?
-
-# win: Good job!
-
-# lose: Sorry, that's the wrong answer.

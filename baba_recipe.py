@@ -2,7 +2,10 @@ import logging
 
 from flask import Flask, render_template
 
-from flask_ask import Ask, statement, question, session
+from flask_ask import Ask, statement, question
+
+from num2words import num2words
+
 
 
 
@@ -27,48 +30,15 @@ def new_recipe():
 @ask.intent("AnswerIntent", convert={'stepNumber': int})
 
 def answer(stepNumber):
-
-    
-    if stepNumber == 1:
-        msg = render_template('one')
-
-    elif stepNumber == 2:
-        msg = render_template('two')
-
-    elif stepNumber == 3:
-        msg = render_template('three')
-    
-    elif stepNumber == 4:
-        msg = render_template('four')
-
-    elif stepNumber == 5:
-        msg = render_template('five')
-
-    elif stepNumber == 6:
-        msg = render_template('six')
-
-    elif stepNumber == 7:
-        msg = render_template('seven')
-
-    elif stepNumber == 8:
-        msg = render_template('eight')
-
-    elif stepNumber == 9:
-        msg = render_template('nine')
-
-    elif stepNumber == 10:
-        msg = render_template('ten')
-
-    elif stepNumber == 11:
-        msg = render_template('eleven')
-
-    elif stepNumber == 12:
-        msg = render_template('twelve')
-
-    else:
-        msg = render_template('unknown')
-
+    '''
+    stepNumber comes in as "1" so it needs to be converted
+    to an integer, then num2words is used to convert 1 to 
+    "one"
+    '''
+    stepNumber = num2words(stepNumber) 
+    msg = render_template(stepNumber)
     return question(msg)
+
 
 
 @ask.intent('AMAZON.StopIntent')
