@@ -1,6 +1,6 @@
 # Alexa Recipe Skill - *Baba G DIY Candy Kit*
 
-Developed with Python and Flask-Ask framework. 
+Developed with Python and Flask-Ask. 
 
 ***
 

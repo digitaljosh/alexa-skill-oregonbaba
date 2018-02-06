@@ -28,7 +28,6 @@ def new_recipe():
 
 
 @ask.intent("AnswerIntent", convert={'stepNumber': int})
-
 def answer(stepNumber):
     '''
     stepNumber comes in as "1" so it needs to be converted
@@ -37,6 +36,12 @@ def answer(stepNumber):
     '''
     stepNumber = num2words(stepNumber) 
     msg = render_template(stepNumber)
+    return question(msg)
+
+
+@ask.intent("DecarbIntent")
+def decarb_instructions():
+    msg = render_template(decarb)
     return question(msg)
 
 
