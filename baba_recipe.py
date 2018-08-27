@@ -2,7 +2,7 @@ import logging
 
 from flask import Flask, render_template
 
-from flask_ask import Ask, statement, question
+from flask_ask import Ask, statement, question, convert_errors
 
 from num2words import num2words
 
@@ -17,11 +17,9 @@ logging.getLogger("flask_ask").setLevel(logging.DEBUG)
 
 
 @ask.launch
-
 def new_recipe():
 
     welcome_msg = render_template('welcome')
-
     return question(welcome_msg)
 
 
@@ -31,19 +29,19 @@ def new_recipe():
 def answer(stepNumber):
     '''
     stepNumber comes in as "1" so it needs to be converted
-    to an integer, then num2words is used to convert 1 to 
+    to an integer (convert={'stepNumber':int).
+    then num2words is used to convert the integer 1 to 
     "one"
     '''
+    if 'stepNumber' in convert_errors:
+        return question(unknown)
+
+    if 'stepNumber' > 12 or 'stepNumber' < 0:
+        return question(uknown)
+
     stepNumber = num2words(stepNumber) 
     msg = render_template(stepNumber)
     return question(msg)
-
-
-@ask.intent("DecarbIntent")
-def decarb_instructions():
-    msg = render_template(decarb)
-    return question(msg)
-
 
 
 @ask.intent('AMAZON.StopIntent')
