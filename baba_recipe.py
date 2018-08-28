@@ -33,16 +33,29 @@ def answer(stepNumber):
     then num2words is used to convert the integer 1 to 
     "one"
     '''
+
     if 'stepNumber' in convert_errors:
-        return question(unknown)
+        unknown = render_template('unknown')
+        return question(unknown).reprompt(unknown)
+
+    if 'stepNumber' == 64:
+        secret_message = "The master sees beyond what is obvious. He sees the unseen, feels the unfelt, and hears the unheard. He looks below the surface for what is hidden and so finds the great heartbeat of the Universe. He smiles, knowing it is his heartbeat, your heartbeat, our heartbeat. Kilo. Yankee. Bravo. Alpha. Lima. India. Oscar. November. End transmission."
+        return statement(secret_message)
 
     if 'stepNumber' > 12 or 'stepNumber' < 0:
-        return question(uknown)
+        unknown = render_template('unknown')
+        return question(unknown).reprompt(unknown)
 
     stepNumber = num2words(stepNumber) 
     msg = render_template(stepNumber)
-    return question(msg)
+    msg_reprompt = "I didn't get that. Can you please repeat the step number?"
+    return question(msg).reprompt(msg_reprompt)
 
+
+@ask.intent('AMAZON.HelpIntent')
+def help():
+    help_text = 'You can ask me for a recipe step. Step zero is for activation instructions. Steps one through twelve are for recipe instructions. Which step would you like?'
+    return question(help_text).reprompt(help_text)
 
 @ask.intent('AMAZON.StopIntent')
 def stop():
