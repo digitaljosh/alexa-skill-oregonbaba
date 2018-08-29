@@ -34,33 +34,39 @@ def answer(stepNumber):
     "one"
     '''
 
-    if 'stepNumber' in convert_errors:
+    if type(stepNumber) != int:
         unknown = render_template('unknown')
-        return question(unknown).reprompt(unknown)
+        return question(unknown)
 
-    if 'stepNumber' == 64:
-        secret_message = "The master sees beyond what is obvious. He sees the unseen, feels the unfelt, and hears the unheard. He looks below the surface for what is hidden and so finds the great heartbeat of the Universe. He smiles, knowing it is his heartbeat, your heartbeat, our heartbeat. Kilo. Yankee. Bravo. Alpha. Lima. India. Oscar. November. End transmission."
+    if stepNumber == 64:
+        secret_message = "The master sees beyond what is obvious. He sees the unseen, feels the unfelt, and hears the unheard. He looks below the surface for what is hidden and so finds the great heartbeat of the Universe. He smiles, knowing it is his heartbeat. Your heartbeat. Our heartbeat. Kilo. Yankee. Bravo. Alpha. Lima. India. Oscar. November. End transmission."
         return statement(secret_message)
-
-    if 'stepNumber' > 12 or 'stepNumber' < 0:
+    
+    if stepNumber > 12 or stepNumber < 0:
         unknown = render_template('unknown')
-        return question(unknown).reprompt(unknown)
+        return question(unknown)
 
-    stepNumber = num2words(stepNumber) 
+    stepNumber = num2words(stepNumber)
     msg = render_template(stepNumber)
-    msg_reprompt = "I didn't get that. Can you please repeat the step number?"
-    return question(msg).reprompt(msg_reprompt)
+    return question(msg)
+    
+    
+    '''
+    
 
+
+    
+    '''
+    
 
 @ask.intent('AMAZON.HelpIntent')
 def help():
     help_text = 'You can ask me for a recipe step. Step zero is for activation instructions. Steps one through twelve are for recipe instructions. Which step would you like?'
-    return question(help_text).reprompt(help_text)
+    return question(help_text)
 
 @ask.intent('AMAZON.StopIntent')
 def stop():
     return statement("Goodbye")
-
 
 @ask.intent('AMAZON.CancelIntent')
 def cancel():
